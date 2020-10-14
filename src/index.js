@@ -38,13 +38,16 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    let arr=[]; 
+  let arr=[]; 
   let result='';
   let arrStr=' ';
   arr=expr.match(/.{1,10}/g);
   for (let i=0;i < arr.length; i++){
     arr[i]=arr[i].replace(/00/ig,'')
       arrStr=arr[i];
+    if (arrStr=='**********') {
+      result+=' '
+      } else {
     let str='';
   for (let j=0;j < arrStr.length; j+=2){
 
@@ -53,6 +56,7 @@ function decode(expr) {
     } else {str+='-'}
   }
   result+=MORSE_TABLE[str];
+   }
 }
   return result;
 }
